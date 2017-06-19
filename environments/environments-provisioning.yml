@@ -24,4 +24,4 @@
       ufw: rule=allow port=8080 proto=tcp
 
     - name: Add SSH deploy key used during workshop
-      authorized_key: user=root key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3khdUbttHnB4Ey6keD2gN+sIXIRvl/nUEqUrqqwN6ofhepGS9SZ2yt1k4EtlSt+tr2ZNKLd894WwqM7OR9VOvFBE52R0KywrCBkZMywUTM66t7Rj+QzORwAiACLmgaC3lkJt9XP3MG5ktHVBEUAeYcPs3coV2Pdvqejz9DHLyHEqVR9sCvvauop+JrfQskcnWjVCWw61KIKYZUlKTXmo2ahCLcSyxgODLx6QR4vCcGNuC5Jb8xbqHhtTtEjJN2FIY1XhlbhVPNisHxQa5Xk/h3g69wnQHFjqX8rKf52aDIEP+gDRf22UztkgXceM5NWqDVHXWTazspO8Z8CmQhhkF jam@deployment-key"
+      authorized_key: user=root key="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDD55NN1dENsVTr5j7GDQUwyGX7oLej7VJvJPGW/gjhBc3wN/F/ctYSVTcUrSa3qRzjjZCYcGV3ubyAilyN2hka0OTOcnvGFYIwz+W/JrSIFr/60ivRhRcSqbwvYUjeJuCUsdK4BHGObYOxLjbdY1D43dloS87I/bfevKVrt1u2Gx091JbveKU9Xtk21ZHBhjW/1bR7r6DFCV6vjdmOQvX3urutrb53iK7+Cs4Rx1hZT+pwG5wCeY2SMjtZJwTx/qdZQDvpqOX9CWlrFhojjBMQNuFRj9oNEhH94tvcciZV4SeQHS/nnZzDdnOjSr2+Cy4lRNd1tAoj6I6xJEUXXAUj jam@deployment-key"
