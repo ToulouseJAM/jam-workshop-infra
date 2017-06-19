@@ -1,0 +1,50 @@
+
+<?xml version='1.0' encoding='UTF-8'?>
+<flow-definition plugin="workflow-job@2.11">
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties>
+    <org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+      <triggers/>
+    </org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty>
+  </properties>
+  <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.36">
+    <script>def execs = [:] // creates empty map
+for (int i=0;i&lt;20;++i) {
+
+    def index = i
+    execs [i] = {
+
+        node(&apos;docker&apos;) {
+            echo &quot;Executing for $index&quot;
+            sleep 100
+        }
+    }
+}
+execs.failFast = true
+
+def execs2 = [:] // creates empty map
+for (int i=0;i&lt;20;++i) {
+
+    def index = i
+    execs2 [i] = {
+
+        node(&apos;docker&apos;) {
+            echo &quot;Executing for $index&quot;
+            sleep 100
+        }
+    }
+}
+execs2.failFast = true
+
+parallel first: {
+    parallel execs
+}, second: {
+    parallel execs2
+}
+</script>
+    <sandbox>true</sandbox>
+  </definition>
+  <triggers/>
+  <disabled>false</disabled>
+</flow-definition>
