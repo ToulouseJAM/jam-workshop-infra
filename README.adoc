@@ -13,9 +13,13 @@ Jenkins master is automatically configured with the DigitalOcean Plugin which pe
 It's assume that : 
 
 * you are on a Linux system (only tested on Fedora 25)
-* you have ansible and terraform installed locally
+* you have ansible and terraform installed locally (tested with ansible==2.3.0 and terraform==0.7.10)
 * a variable DO_API with DigitalOcean credentials is exported on the current shell
 * a ssh key pair is available on the root of this repository (id_rsa_jam, id_rsa_jam.pub), and must be added to your DigitalOcean settings
+
+Since the SSH key pair is created on your own laptop, you need to adapt provisoning files with your own credentials.
+
+* Update `ssh_keys` property of `jenkins-masters/jenkins-masters.tf`, `environments/environments.tf` and `sonarqube/sonarqube.tf` Terraform provisioning files with the fingerprint of the dedicated SSH public key (you can easily get it from DigitalOcean settings)
 
 == Machines creation
 
@@ -77,12 +81,14 @@ All files are created inside a `_dist` directory.
 == Known limitations
 
 Jenkins DigitalOcean Plugin needs to have your "ssh_key_id" number during provisioning (see jenkins-masters/jenkins-provisioning.yml#14). This is a DigitalOcean specific number and it's completely dependant of your DigitalOcean settings. To retrieve this number, the only way I found is to configure manually the plugin the first time, retrieve the config.xml of Jenkins and get this number from the file.
- 
+
 CAUTION: DigitalOcean sets a limit of number of Droplets. You need to increase both on DigitalOcean side (a dedicated form is available on DigitalOcean website) and on  the file `jenkins-masters/jenkins-provisioning.yml` depending on the number of attendees.
+
+CAUTION: Since all Jenkins instances share the same DigitalOcean API key, you are limited by link:https://developers.digitalocean.com/documentation/v2/#rate-limit[DigitalOcean API Rate Limit].
 
 CAUTION: the `instanceCap` property specified inside the Jenkins DigitalOcean plugin configuration is global to all attendees (since it's the same API key for each attendee).
 
-== TODO
+== Further improvements
 
 There are some "code duplication" and limitations that could be improved here.
 
